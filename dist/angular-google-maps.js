@@ -201,16 +201,16 @@ Nicholas McCready - https://twitter.com/nmccready
           this._isOpen = false;
           this._close(true);
         };
-        google.maps.InfoWindow.prototype.isOpen = function(val) {
-          if (val == null) {
-            val = void 0;
-          }
-          if (val == null) {
-            return this._isOpen;
-          } else {
-            return this._isOpen = val;
-          }
-        };
+        // google.maps.InfoWindow.prototype.isOpen = function(val) {
+        //   if (val == null) {
+        //     val = void 0;
+        //   }
+        //   if (val == null) {
+        //     return this._isOpen;
+        //   } else {
+        //     return this._isOpen = val;
+        //   }
+        // };
 
         /*
         Do the same for InfoBox
