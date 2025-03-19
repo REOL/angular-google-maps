@@ -201,16 +201,17 @@ Nicholas McCready - https://twitter.com/nmccready
           this._isOpen = false;
           this._close(true);
         };
-        google.maps.InfoWindow.prototype.isOpen = function(val) {
-          if (val == null) {
-            val = void 0;
-          }
-          if (val == null) {
-            return this._isOpen;
-          } else {
-            return this._isOpen = val;
-          }
-        };
+        // google.maps.InfoWindow.prototype.isOpen = function (val) {
+        //   return true;
+        //   if (val == null) {
+        //     val = void 0;
+        //   }
+        //   if (val == null) {
+        //     return this._isOpen;
+        //   } else {
+        //     return this._isOpen = val;
+        //   }
+        // };
 
         /*
         Do the same for InfoBox
@@ -228,16 +229,16 @@ Nicholas McCready - https://twitter.com/nmccready
             this._isOpen = false;
             this._close();
           };
-          window.InfoBox.prototype.isOpen = function(val) {
-            if (val == null) {
-              val = void 0;
-            }
-            if (val == null) {
-              return this._isOpen;
-            } else {
-              return this._isOpen = val;
-            }
-          };
+          // window.InfoBox.prototype.isOpen = function(val) {
+          //   if (val == null) {
+          //     val = void 0;
+          //   }
+          //   if (val == null) {
+          //     return this._isOpen;
+          //   } else {
+          //     return this._isOpen = val;
+          //   }
+          // };
           uiGmapInfoBox = (function(superClass) {
             extend(uiGmapInfoBox, superClass);
 
@@ -3858,8 +3859,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           $log.info(this);
         }
 
-        WindowChildModel.prototype.doShow = function(wasOpen) {
-          if (this.scope.show === true || wasOpen) {
+        WindowChildModel.prototype.doShow = function() {
+          if (this.scope.show === true) {
             return this.showWindow();
           } else {
             return this.hideWindow();
@@ -3885,7 +3886,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
                 if ((ref = _this.opts) != null) {
                   ref.content = void 0;
                 }
-                wasOpen = _this.gObject.isOpen();
+                wasOpen = true;
                 _this.remove();
                 return _this.createGWin(wasOpen);
               }
@@ -3944,7 +3945,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
             }
             this.gObject.setContent(this.opts.content);
             this.handleClick(((ref = this.scope) != null ? (ref1 = ref.options) != null ? ref1.forceClick : void 0 : void 0) || isOpen);
-            return this.doShow(this.gObject.isOpen());
+            return this.doShow();
           }
         };
 
@@ -4030,7 +4031,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           show = (function(_this) {
             return function() {
               var isOpen, maybeMarker, pos;
-              if (!_this.gObject.isOpen()) {
+              //if (!_this.gObject.isOpen()) {
                 maybeMarker = _this.getGmarker();
                 if ((_this.gObject != null) && (_this.gObject.getPosition != null)) {
                   pos = _this.gObject.getPosition();
@@ -4042,11 +4043,11 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
                   return;
                 }
                 _this.gObject.open(_this.gMap, maybeMarker);
-                isOpen = _this.gObject.isOpen();
+              isOpen = true;
                 if (_this.model.show !== isOpen) {
                   return _this.model.show = isOpen;
                 }
-              }
+              //}
             };
           })(this);
           if (this.scope.templateUrl) {
@@ -4081,7 +4082,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
         };
 
         WindowChildModel.prototype.hideWindow = function() {
-          if ((this.gObject != null) && this.gObject.isOpen()) {
+          if ((this.gObject != null)) {
             return this.gObject.close();
           }
         };
